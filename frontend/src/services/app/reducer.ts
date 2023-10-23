@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { SubmissionStates } from "../submissionState";
 import initialize from "./thunks/initialize";
 import increase from "./thunks/increase";
+import decrease from "./thunks/decrease";
 
 interface AppState {
   submissionState: SubmissionStates;
@@ -40,6 +41,13 @@ export const appSlice = createSlice({
       state.submissionState = "FAILED";
     });
     builder.addCase(increase.fulfilled, (state, { payload }) => {
+      state.currentCount = payload.currentCount;
+      state.submissionState = "OK";
+    });
+    builder.addCase(decrease.pending, (state, {}) => {
+      state.submissionState = "PENDING";
+    });
+    builder.addCase(decrease.fulfilled, (state, { payload }) => {
       state.currentCount = payload.currentCount;
       state.submissionState = "OK";
     });

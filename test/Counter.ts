@@ -32,5 +32,14 @@ describe("Counter", function () {
       const filteredEvents = await counter.queryFilter(filter);
       expect(filteredEvents[0].args.count).equals(1);
     });
+    it("Should decrease by one", async function () {
+      const { counter, user } = await loadFixture(deployCounter);
+      // increase by one
+      await counter.increase(); // cuurentCount = 1
+      // decrease
+      await counter.decrease();
+      // await expect(counter.decrease()).revertedWith("Already zero!");
+      expect((await counter.currentCount()).toNumber()).equals(0);
+    });
   });
 });

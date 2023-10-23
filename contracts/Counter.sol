@@ -14,4 +14,9 @@ contract Counter {
         currentCount++; // Increment currentCount by one
         emit Increment(currentCount); // Emit the updated count
     }
+
+    function decrease() public {
+        require(currentCount > 0, "Already zero!");
+        currentCount--;
+    }
 }
