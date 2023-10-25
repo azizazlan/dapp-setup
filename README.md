@@ -44,3 +44,11 @@ It is assumed you have the followings:
    ```
 
 6. Copy or move the `dist` directory to the web server html directory. Then restart NGINX.
+
+## SSL Cert Warning.
+
+To deploy on remote endpoint with SSL, run the command:
+
+```
+NODE_TLS_REJECT_UNAUTHORIZED=0 npx hardhat run --network kesidang scripts/deploy.ts
+```
